@@ -1,0 +1,614 @@
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+p {
+    color: #555;
+}
+
+a {
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #1a1a1a;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-soc {
+    display: flex;
+    align-items: center;
+}
+
+.nav-soc img {
+    height: 16px;
+    display: block;
+}
+
+#lang-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+#lang-toggle:hover {
+    opacity: 0.7;
+}
+
+#lang-toggle.active {
+    font-weight: 700;
+}
+
+/* ========================================
+   SECTIONS LAYOUT
+   ======================================== */
+
+section {
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    padding: 60px 40px;
+}
+
+#works {
+    padding-top: 100px;
+}
+
+.about-container,
+.works-container,
+.contact-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.section-header {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+}
+
+.about-contact {
+    margin-top: 40px;
+}
+
+.about-contact-intro {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.about-contact-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.about-contact-links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.about-instagram img {
+    height: 16px;
+    display: block;
+}
+
+
+/* ========================================
+   WORKS SECTION
+   ======================================== */
+
+.works {
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
+}
+
+.works-grid {
+    column-count: 4;
+    column-gap: 20px;
+}
+
+.work-item {
+    position: relative;
+    overflow: hidden;
+    break-inside: avoid;
+    margin-bottom: 20px;
+}
+
+.work-item img {
+    width: 100%;
+    display: block;   /* removes inline spacing under image */
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.work-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.work-item:hover::after {
+    opacity: 1;
+}
+
+.work-item::before {
+    content: attr(data-title) " (" attr(data-year) ") " "\A" attr(data-medium) ;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 15px;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: pre;
+    font-size: 14px;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.work-item:hover::before {
+    opacity: 1;
+}
+
+/* ========================================
+   MODAL STYLES
+   ======================================== */
+
+.art-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.95);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.art-modal.active {
+    display: flex;
+}
+
+.modal-close,
+.modal-prev,
+.modal-next {
+    position: absolute;
+    font-size: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-close { top: 20px; right: 40px; }
+.modal-prev { left: 40px; }
+.modal-next { right: 40px; }
+
+#modal-image {
+    max-width: 80vw;
+    max-height: 80vh;
+}
+
+.modal-caption {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ========================================
+   ABOUT SECTION
+   ======================================== */
+
+.about {
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
+}
+
+.about-content {
+    max-width: 700px;
+    line-height: 1.8;
+}
+
+.about-content p {
+    font-size: 18px;
+    text-align: justify;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.about-layout {
+    display: flex;
+    align-items: stretch;
+    gap: 60px;
+}
+
+.about-portrait {
+    flex: 0 0 30vw;
+}
+
+.about-portrait img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+
+.about-contact {
+    margin-top: 40px;
+    font-size: 15px;
+    color: #666;
+}
+
+.about-contact a {
+    color: #1a1a1a;
+    font-weight: 500;
+}
+
+.about-contact span {
+    margin: 0 10px;
+    color: #ccc;
+}
+
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid #f0f0f0;
+    background-color: #fff;
+    color: #888;
+    font-size: 14px;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Stagger effect - each section fades in after the previous */
+#about {
+    animation-delay: 0s;
+}
+
+#works {
+    animation-delay: 0s;
+}
+
+#contact {
+    animation-delay: 0s;
+}
+
+/* Individual work items fade in with stagger */
+.work-item:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.work-item:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.work-item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.work-item:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - TABLET
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .nav-menu {
+        gap: 25px;
+    }
+
+    section {
+        padding: 60px 15px;
+        min-height: auto;
+    }
+
+    .works-grid {
+        column-count: 3;
+    }
+
+    .about-content p {
+        font-size: 16px;
+    }
+
+    .contact-content p {
+        font-size: 20px;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .navbar {
+        height: 60px;
+    }
+
+    .nav-container {
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .nav-menu {
+        gap: 15px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    section {
+        padding: 60px 15px;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .works-grid {
+        column-count: 1;
+    }
+
+    .work-title {
+        font-size: 20px;
+    }
+
+    .work-description {
+        font-size: 14px;
+    }
+
+    .art-modal {
+        padding: 0 40px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #modal-image {
+        width: 100%;
+        max-width: calc(100vw - 150px);
+        max-height: 60vh;
+        object-fit: contain;
+    }
+
+    .modal-prev, .modal-next {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        line-height: 40px;
+        text-align: center;
+        background: rgba(255,255,255,0.8);
+        border-radius: 50%;
+        z-index: 10;
+    }
+
+    .modal-prev { left: 10px; }
+    .modal-next { right: 10px; }
+
+    .modal-close {
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        background: rgba(255,255,255,0.8);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        z-index: 10;
+    }
+
+    .modal-caption {
+        font-size: 14px;
+        margin-top: 8px;
+        text-align: center;
+        word-break: break-word;
+    }
+
+    .about-content p {
+        font-size: 15px;
+    }
+
+    .about-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-portrait {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .about-portrait img {
+        width: 100%;
+        height: auto;
+    }
+
+    .contact-content p {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .contact-links {
+        gap: 12px;
+        font-size: 13px;
+    }
+
+    .contact-link {
+        font-size: 13px;
+    }
+
+    .footer {
+        padding: 30px 15px;
+        font-size: 12px;
+    }
+}
